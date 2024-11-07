@@ -1,23 +1,20 @@
-// components/Tabs/Tabs.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 
 export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
-  // Перевіряємо чи activeTabId є правильним
   const correctedActiveTabId = tabs.some(tab => tab.id === activeTabId)
     ? activeTabId
-    : tabs[0].id; // Якщо активний таб не знайдено, встановлюємо перший таб за замовчуванням
+    : tabs[0].id;
 
   const handleTabClick = (e, tabId) => {
-    e.preventDefault(); // Запобігаємо перезавантаженню сторінки
+    e.preventDefault();
     if (tabId !== correctedActiveTabId) {
-      onTabSelected(tabId); // Викликаємо onTabSelected для неактивного табу
+      onTabSelected(tabId);
     }
   };
 
-  // Знаходимо активний таб
   const activeTab = tabs.find(tab => tab.id === correctedActiveTabId);
-  const activeTabContent = activeTab ? activeTab.content : ''; // Виводимо контент активного табу
+  const activeTabContent = activeTab ? activeTab.content : '';
 
   return (
     <div className="tabs is-boxed" data-cy="TabsComponent">
@@ -39,9 +36,7 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
         ))}
       </ul>
 
-      {/* Виведення контенту активного табу тут */}
       <div className="tabs-content" data-cy="TabContent">
-        {/* Для виведення тексту знизу можна використовувати стилі */}
         <div className="tabs-content-text">{activeTabContent}</div>
       </div>
     </div>
